@@ -1,0 +1,27 @@
+name: build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.8
+      - name: Wrapper (jar yoksa uret)
+        run: |
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then gradle wrapper --gradle-version 8.8; fi
+          chmod +x gradlew
+      - name: Build and test
+        run: ./gradlew build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chatl-jar
+          path: build/libs/*.jar

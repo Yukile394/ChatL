@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "chatl",
+  "version": "${version}",
+  "name": "ChatL",
+  "description": "ClickGUI, Friend Config, uyumluluk paneli ve 5 bilgi/test modülü.",
+  "authors": ["ChatL"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": { "client": ["dev.chatl.ChatLClient"] },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
